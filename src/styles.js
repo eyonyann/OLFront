@@ -416,4 +416,33 @@ export const styles = {
 
       },
 
+      '& h1, h2, h3': {
+        margin: '1.5rem 0 1rem'
+      },
+      '& p': {
+        lineHeight: 1.6,
+        marginBottom: '1rem'
+      },
+      '& ul, ol': {
+        paddingLeft: '2rem',
+        marginBottom: '1rem'
+      },
+      '& code': {
+        backgroundColor: '#f5f5f5',
+        padding: '0.2rem 0.4rem',
+        borderRadius: '4px'
+      },
+      '& pre': {
+        backgroundColor: '#f5f5f5',
+        padding: '1rem',
+        borderRadius: '8px',
+        overflowX: 'auto',
+        margin: '1rem 0'
+      },
+      '& img': {
+        maxWidth: '100%',
+        height: 'auto',
+        borderRadius: '8px',
+        margin: '1rem 0'
+      }
 };

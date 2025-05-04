@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react'; // Добавлен useContext
 import Header from '../components/Header';
 import courseService from '../services/courseService';
+import { AuthContext } from '../contexts/AuthContext';
+
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   TextField,
@@ -17,15 +20,17 @@ import {
 import { styles } from '../styles';
 
 const Courses = () => {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { role, userId } = useContext(AuthContext); //'STUDENT' 'ADMIN' 'TEACHER'
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const data = await courseService.getAllCourses();
+        const data = await courseService.getAllCoursesWithImages();
         setCourses(data);
       } catch (err) {
         setError(err.message);
@@ -43,9 +48,12 @@ const Courses = () => {
     return text.length > maxLength ? `${text.substring(0, maxLength)}...` : text;
   };
 
-  const filteredCourses = courses.filter((course) =>
-    course.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  const filteredCourses = courses.filter((course) => {
+    console.log(course);
+    const isTeacherCourse = role === 'TEACHER' ? course.authorId == userId : true;
+    const matchesSearch = course.title.toLowerCase().includes(searchQuery.toLowerCase());
+    return isTeacherCourse && matchesSearch;
+  });
 
   if (loading) {
     return (
@@ -92,9 +100,12 @@ const Courses = () => {
                 <CardMedia
                   component="img"
                   height="140"
-                  image={`/api/courses/${course.id}/image`}
+                  image={course.imageUrl}
                   alt={course.title}
                   sx={styles.cardMedia}
+                  onError={(e) => {
+                    e.target.src = '/placeholder-image.jpg';
+                  }}
                 />
                 <CardContent sx={styles.cardContent}>
                   <Typography variant="h6" gutterBottom>
@@ -104,7 +115,11 @@ const Courses = () => {
                     {truncateText(course.description, 100)}
                   </Typography>
                   <Box sx={styles.buttonContainer}>
-                    <Button variant="contained" sx={styles.detailsButton}>
+                    <Button 
+                      variant="contained" 
+                      sx={styles.detailsButton}
+                      onClick={() => navigate(`/courses/${course.id}`)}
+                    >
                       Подробнее
                     </Button>
                   </Box>

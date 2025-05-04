@@ -104,6 +104,34 @@ static async getAllCourses() {
   }
 }
 
+static async getAllCourseImages() {
+  try {
+    const response = await api.get('/courses/images');
+    return response.data;
+  } catch (error) {
+    throw this.handleError(error);
+  }
+}
+
+static async getAllCoursesWithImages() {
+  try {
+    const [coursesResponse, imagesResponse] = await Promise.all([
+      this.getAllCourses(),
+      this.getAllCourseImages()
+    ]);
+    
+    return coursesResponse.map(course => {
+      const base64Image = imagesResponse[course.id];
+      return {
+        ...course,
+        imageUrl: base64Image ? `data:image/jpeg;base64,${base64Image}` : '/placeholder-image.jpg'
+      };
+    });
+  } catch (error) {
+    throw this.handleError(error);
+  }
+}
+
 
 static async getCourseWithImage(id) {
     try {

@@ -23,4 +23,18 @@ export default class LessonService {
         return new Error(serverMessage || 'Ошибка при загрузке уроков');
     }
   }
+
+  // lessonService.js
+static async getLessonByCourseIdAndOrder(courseId, lessonOrder) {
+  try {
+    const response = await api.get(`/courses/${courseId}/lessons/${lessonOrder}`);
+    return new LessonDTO(response.data);
+  } catch (error) {
+    throw this.handleError(error);
+  }
+}
+
+getAssignmentForLesson(lessonId) {
+  return api.get(`/lessons/${lessonId}/assignment`);
+}
 }

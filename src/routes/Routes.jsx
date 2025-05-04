@@ -9,6 +9,7 @@ import CourseDetails from '../pages/CourseDetails';
 import Dashboard from '../pages/Dashboard';
 import Profile from '../pages/Profile';
 import CreateCourse from '../pages/CreateCourse';
+import Lesson  from '../pages/Lesson';
 
 const AppRoutes = () => {
   return (
@@ -24,6 +25,7 @@ const AppRoutes = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/courses/:courseId/lessons/:lessonOrder" element={<Lesson />} />
         
         {/* Дополнительно: обработка несуществующих маршрутов */}
         <Route path="*" element={<LandingPage />} />
