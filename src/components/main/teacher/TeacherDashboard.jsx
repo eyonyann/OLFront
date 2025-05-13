@@ -7,9 +7,9 @@ import { styles } from '../../../styles';
 const TeacherDashboard = () => {
   // Моковые данные для примера
   const teacherStats = {
-    totalCourses: 4,
-    activeStudents: 128,
-    avgProgress: 65,
+    totalCourses: 1,
+    activeStudents: 2,
+    avgProgress: 3,
     recentSubmissions: [
       { student: 'Иван Петров', course: 'React Fundamentals', status: 'Проверено' },
       { student: 'Мария Сидорова', course: 'Advanced JS', status: 'Ждет проверки' },

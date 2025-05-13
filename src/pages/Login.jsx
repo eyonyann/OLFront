@@ -31,7 +31,7 @@ const Login = () => {
     <Container maxWidth="sm" sx={styles.pageContainer}>
       <Box sx={styles.authContainer}>
         <Typography variant="h3" component="h1" sx={{ ...styles.gradientText, mb: 3 }}>
-          Welcome Back
+          Вход
         </Typography>
 
         {error && <Typography color="error" sx={{ mb: 2 }}>{error}</Typography>}
@@ -59,14 +59,14 @@ const Login = () => {
           />
 
           <Button type="submit" variant="contained" fullWidth sx={styles.primaryButton}>
-            Sign In
+            Войти
           </Button>
 
           <Box sx={styles.linkContainer}>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
-              Don't have an account?{' '}
+              Еще нет аккаунта?{' '}
               <Link href="/register" color="primary">
-                Sign Up
+                Создать
               </Link>
             </Typography>
           </Box>

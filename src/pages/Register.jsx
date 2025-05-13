@@ -39,7 +39,7 @@ const Register = () => {
     <Container maxWidth="sm" sx={styles.pageContainer}>
       <Box sx={styles.authContainer}>
         <Typography variant="h3" component="h1" sx={{ ...styles.gradientText, mb: 3 }}>
-          Create Account
+          Создать аккаунт
         </Typography>
 
         {error && <Typography color="error" sx={{ mb: 2 }}>{error}</Typography>}
@@ -47,7 +47,7 @@ const Register = () => {
         <form onSubmit={handleSubmit}>
           <TextField
             name="fullname"
-            label="Full Name"
+            label="Имя Фамилия"
             value={formData.fullname}
             onChange={handleChange}
             fullWidth
@@ -57,7 +57,7 @@ const Register = () => {
 
           <TextField
             name="username"
-            label="Username"
+            label="Логин"
             value={formData.username}
             onChange={handleChange}
             fullWidth
@@ -67,7 +67,7 @@ const Register = () => {
 
           <TextField
             name="password"
-            label="Password"
+            label="Пароль"
             type="password"
             value={formData.password}
             onChange={handleChange}
@@ -77,7 +77,7 @@ const Register = () => {
           />
 
           <FormControl fullWidth margin="normal">
-            <InputLabel>Role</InputLabel>
+            <InputLabel>Роль</InputLabel>
             <Select
               name="role"
               value={formData.role}
@@ -85,21 +85,21 @@ const Register = () => {
               onChange={handleChange}
               required
             >
-              <MenuItem value="STUDENT">Student</MenuItem>
-              <MenuItem value="TEACHER">Teacher</MenuItem>
-              <MenuItem value="ADMIN">Admin</MenuItem>
+              <MenuItem value="STUDENT">Студент</MenuItem>
+              <MenuItem value="TEACHER">Преподаватель</MenuItem>
+              <MenuItem value="ADMIN">Админ</MenuItem>
             </Select>
           </FormControl>
 
           <Button type="submit" variant="contained" fullWidth sx={styles.primaryButton}>
-            Create Account
+            Создать аккаунт
           </Button>
 
           <Box sx={styles.linkContainer}>
             <Typography variant="body2" color="text.secondary" sx={{ mt: 3 }}>
-              Already have an account?{' '}
+              Уже есть аккаунт?{' '}
               <Link href="/login" color="primary">
-                Sign In
+                Войти
               </Link>
             </Typography>
           </Box>
